@@ -1,11 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Food from './food.js';
+
 
 const profiles = [
 {id: 1,
   userID: '1',
   favoriteMovieID: '1',
+  favoriteFood: '1',
 },
 
 {id: 2,
@@ -71,33 +74,53 @@ function App() {
           Here are Ryan and Ana's favorite movies.
       </p>
 
-      <ul>
+    <ul>
+    {profiles.map(profile => {
+      const userName = users[profile.userID].name;
+      const favoriteMovie = movies[profile.favoriteMovieID].name;
 
-{profiles.map(profile => {
-  const userName = users[profile.userID].name;
-  const favMovieName = movies[profile.favoriteMovieID].name;
+      return(
+      <li key={profile.id}>
+      <p>
+        {`${userName} really likes ${favoriteMovie}`}
+        
 
-  return (
-    /*
-    You need to include the `key` property every time you create list
-    elements in React. The key property is necessary because it enables
-    React to perform reconciliation
-    (https://reactjs.org/docs/reconciliation.html)
-    */
-    <li key={profile.id}>
+                 </p>
+
+
+
+
+                 <Food userName = {userName}/>
+                 
+      </li>
+
+      )
       
-      <p>{`${userName} really likes "${favMovieName}."`}</p>
-    </li>
-  );
-})
-}
-</ul>
+
+      }
+    )
 
 
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+    </ul>
 
       </header>
     </div>
   );
 }
+
+
 
 export default App;
